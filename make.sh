@@ -29,7 +29,7 @@ pack_images()
 {
 	local sys_text_base dst
 
-	dst=../rkbin/tools
+	dst=../rock64-rkbin/tools
 	if [ -d ${dst} ]; then
 		path=$(cd `dirname ${dst}`; pwd)
 	else
@@ -43,7 +43,7 @@ pack_images()
 
 	sys_text_base=`sed -n "/CONFIG_SYS_TEXT_BASE=/s/CONFIG_SYS_TEXT_BASE=//p" ${DSTDIR}/out/include/autoconf.mk|tr -d '\r'`
 	echo U-Boot entry point address: ${sys_text_base}
-	${path}/tools/loaderimage --pack --uboot ${DSTDIR}/out/u-boot.bin uboot.img ${sys_text_base}
+	${path}/tools/loaderimage --pack --uboot ${DSTDIR}/out/u-boot.bin ${DSTDIR}/out/uboot.img ${sys_text_base}
 }
 
 echo "make for ${BOARD}_defconfig by -j${JOB}"
